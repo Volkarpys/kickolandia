@@ -10,7 +10,7 @@
             --bg-color: #050608;
             --card-bg: rgba(15, 18, 22, 0.95);
             --kick-green: #53fc18;
-            --kick-green-glow: rgba(83, 252, 24, 0.4);
+            --kick-green-glow: rgba(83, 252, 24, 0.3);
             --text-primary: #ffffff;
             --text-secondary: #8a8a93;
             --sub-gold: #ffd700;
@@ -33,74 +33,62 @@
 
         header { text-align: center; padding: 40px 10px; width: 100%; max-width: 850px; }
         h1 { font-family: var(--font-header); font-size: clamp(2.2rem, 8vw, 3.5rem); color: var(--kick-green); text-transform: uppercase; letter-spacing: -2px; text-shadow: 0 0 15px var(--kick-green-glow); margin-bottom: 5px; }
-        .subtitle { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
-
-        /* PLAYER DINÂMICO NO TOPO */
-        #video-container {
-            width: 100%;
-            max-width: 850px;
-            background: #000;
-            border-radius: 20px;
-            border: 2px solid var(--kick-green);
-            margin-bottom: 30px;
-            display: none;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            box-shadow: 0 0 40px var(--kick-green-glow);
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-        }
-
-        iframe { width: 100%; height: 100%; border: none; }
+        .subtitle { color: var(--text-secondary); font-size: 0.95rem; max-width: 650px; margin: 0 auto; line-height: 1.6; }
 
         .container { 
             width: 100%; 
-            max-width: 850px; 
+            max-width: 900px; 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); 
             gap: 15px; 
+            margin-top: 30px;
         }
 
         .streamer-card {
             background-color: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            padding: 20px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 8px;
             transition: all 0.3s ease;
         }
 
-        .streamer-card:hover { border-color: var(--kick-green); transform: translateY(-5px); }
+        .streamer-card:hover { border-color: var(--kick-green); transform: translateY(-3px); }
 
-        .names-container { margin-bottom: 15px; }
-        .real-name { font-weight: 600; font-size: 1.1rem; color: #fff; display: block; }
-        .kick-username { font-size: 0.8rem; color: var(--kick-green); font-family: var(--font-header); }
-        .sub-status { font-size: 0.6rem; color: var(--sub-gold); border: 1px solid var(--sub-gold); padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: 800; margin-top: 6px; display: inline-block; }
-
-        .button-group { display: flex; flex-direction: column; gap: 8px; }
-
-        .btn {
-            text-align: center;
-            text-decoration: none;
-            padding: 10px;
+        .mini-player {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
             border-radius: 8px;
-            font-weight: 800;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-            cursor: pointer;
-            border: none;
+            overflow: hidden;
+            border: 1px solid rgba(83, 252, 24, 0.1);
         }
 
-        .btn-preview { background: rgba(83, 252, 24, 0.1); color: var(--kick-green); border: 1px solid var(--kick-green); }
-        .btn-direct { background: var(--kick-green); color: #000; }
+        iframe { width: 100%; height: 100%; border: none; pointer-events: none; }
 
-        .btn:hover { box-shadow: 0 0 15px var(--kick-green-glow); filter: brightness(1.1); }
+        .names-container { display: flex; flex-direction: column; }
+        .real-name { font-weight: 600; font-size: 0.95rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .kick-username { font-size: 0.75rem; color: var(--kick-green); font-family: var(--font-header); }
+        .sub-status { font-size: 0.55rem; color: var(--sub-gold); border: 1px solid var(--sub-gold); padding: 1px 5px; border-radius: 4px; text-transform: uppercase; font-weight: 800; margin-top: 4px; display: inline-block; width: fit-content; }
 
-        /* PAINEL DE INFO */
+        .btn-direct {
+            background: var(--kick-green);
+            color: #000;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            text-align: center;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        .btn-direct:hover { filter: brightness(1.1); box-shadow: 0 0 10px var(--kick-green); }
+
         .control-panel { margin-top: 50px; width: 100%; max-width: 850px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px; margin-bottom: 60px; }
         .panel-section { margin-bottom: 25px; border-bottom: 1px solid rgba(83, 252, 24, 0.1); padding-bottom: 15px; }
         .panel-section:last-child { border: none; }
@@ -108,259 +96,117 @@
         .panel-text { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
         .highlight { color: #fff; font-weight: 600; border-bottom: 1px solid var(--kick-green); }
 
-        @media (max-width: 600px) {
-            .container { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 480px) { .container { grid-template-columns: repeat(2, 1fr); gap: 10px; } .real-name { font-size: 0.8rem; } }
     </style>
 </head>
 <body>
 
     <header>
         <h1>KICKOLANDIA</h1>
-        <p class="subtitle">⚔️ HUB de Operações Táticas - Aliança de Crescimento</p>
+        <p class="subtitle">Bem-vindo à <b>KICKOLANDIA</b>, o hub estratégico onde streamers se tornam lendas. União gera autoridade!</p>
     </header>
 
-    <div id="video-container">
-        <iframe id="kick-player" src="" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
-    </div>
-
     <div class="container">
-        <script>
-            function playLive(username) {
-                const container = document.getElementById('video-container');
-                const iframe = document.getElementById('kick-player');
-                iframe.src = `https://player.kick.com/${username}`;
-                container.style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        </script>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Caio 👤</span>
-                <span class="kick-username">kylevlogs</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('kylevlogs')">📺 Player Aqui</button>
-                <a href="https://kick.com/kylevlogs" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/kylevlogs" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Caio 👤</span><span class="kick-username">kylevlogs</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/kylevlogs" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Márcio 🎮</span>
-                <span class="kick-username">cheffnogame</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('cheffnogame')">📺 Player Aqui</button>
-                <a href="https://kick.com/cheffnogame" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/cheffnogame" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Márcio 🎮</span><span class="kick-username">cheffnogame</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/cheffnogame" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Thiago 🎤</span>
-                <span class="kick-username">thiagodamazio</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('thiagodamazio')">📺 Player Aqui</button>
-                <a href="https://kick.com/thiagodamazio" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/thiagodamazio" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Thiago 🎤</span><span class="kick-username">thiagodamazio</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/thiagodamazio" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Marcus ⚽</span>
-                <span class="kick-username">velhaguardafc</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('velhaguardafc')">📺 Player Aqui</button>
-                <a href="https://kick.com/velhaguardafc" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/velhaguardafc" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Marcus ⚽</span><span class="kick-username">velhaguardafc</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/velhaguardafc" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Fabrício 🕹️</span>
-                <span class="kick-username">fabrigamerj</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('fabrigamerj')">📺 Player Aqui</button>
-                <a href="https://kick.com/fabrigamerj" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/fabrigamerj" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Fabrício 🕹️</span><span class="kick-username">fabrigamerj</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/fabrigamerj" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Carlos 🎧</span>
-                <span class="kick-username">Caddugameplay</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('Caddugameplay')">📺 Player Aqui</button>
-                <a href="https://kick.com/Caddugameplay" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/Caddugameplay" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Carlos 🎧</span><span class="kick-username">Caddugameplay</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/Caddugameplay" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">CainanFC 🏆</span>
-                <span class="kick-username">cainanfc</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('cainanfc')">📺 Player Aqui</button>
-                <a href="https://kick.com/cainanfc" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/cainanfc" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">CainanFC 🏆</span><span class="kick-username">cainanfc</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/cainanfc" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">kekefreitasgamer 🔥</span>
-                <span class="kick-username">kekefreitasgamer</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('kekefreitasgamer')">📺 Player Aqui</button>
-                <a href="https://kick.com/kekefreitasgamer" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/kekefreitasgamer" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">kekefreitasgamer 🔥</span><span class="kick-username">kekefreitasgamer</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/kekefreitasgamer" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Fabricio Carlos 💼</span>
-                <span class="kick-username">Bossyfabriciocarlos</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('Bossyfabriciocarlos')">📺 Player Aqui</button>
-                <a href="https://kick.com/Bossyfabriciocarlos" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/Bossyfabriciocarlos" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Fabricio Carlos 💼</span><span class="kick-username">Bossyfabriciocarlos</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/Bossyfabriciocarlos" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="info-box">
-                <div class="names-container">
-                    <span class="real-name">Renan ✂️</span>
-                    <span class="kick-username">hairzinho</span><br>
-                    <span class="sub-status">💎 Aliança de Subs</span>
-                </div>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('hairzinho')">📺 Player Aqui</button>
-                <a href="https://kick.com/hairzinho" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/hairzinho" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Renan ✂️</span><span class="kick-username">hairzinho</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/hairzinho" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">R1 Digital Meta (Rone) ⚔️</span>
-                <span class="kick-username">volkarpys</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('volkarpys')">📺 Player Aqui</button>
-                <a href="https://kick.com/volkarpys" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/volkarpys" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">R1 Digital Meta (Rone) ⚔️</span><span class="kick-username">volkarpys</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/volkarpys" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Sandrinho 💰</span>
-                <span class="kick-username">sandrinhocoins</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('sandrinhocoins')">📺 Player Aqui</button>
-                <a href="https://kick.com/sandrinhocoins" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/sandrinhocoins" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Sandrinho 💰</span><span class="kick-username">sandrinhocoins</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/sandrinhocoins" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Jedai 🌌</span>
-                <span class="kick-username">jedaizera</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('jedaizera')">📺 Player Aqui</button>
-                <a href="https://kick.com/jedaizera" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/jedaizera" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Jedai 🌌</span><span class="kick-username">jedaizera</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/jedaizera" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Marretona167 🔨</span>
-                <span class="kick-username">Marretona167</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('Marretona167')">📺 Player Aqui</button>
-                <a href="https://kick.com/Marretona167" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/Marretona167" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Marretona167 🔨</span><span class="kick-username">Marretona167</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/Marretona167" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Strolder 🚀</span>
-                <span class="kick-username">strolder</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('strolder')">📺 Player Aqui</button>
-                <a href="https://kick.com/strolder" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/strolder" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Strolder 🚀</span><span class="kick-username">strolder</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/strolder" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
-
         <div class="streamer-card">
-            <div class="names-container">
-                <span class="real-name">Bruno Lykon 🐺</span>
-                <span class="kick-username">brunolykont</span><br>
-                <span class="sub-status">💎 Aliança de Subs</span>
-            </div>
-            <div class="button-group">
-                <button class="btn btn-preview" onclick="playLive('brunolykont')">📺 Player Aqui</button>
-                <a href="https://kick.com/brunolykont" target="_blank" class="btn btn-direct">🔗 Abrir Kick</a>
-            </div>
+            <div class="mini-player"><iframe src="https://player.kick.com/brunolykont" scrolling="no"></iframe></div>
+            <div class="names-container"><span class="real-name">Bruno Lykon 🐺</span><span class="kick-username">brunolykont</span><span class="sub-status">💎 Aliança de Subs</span></div>
+            <a href="https://kick.com/brunolykont" target="_blank" class="btn-direct">🔗 Abrir Canal</a>
         </div>
     </div>
 
     <div class="control-panel">
         <div class="panel-section">
             <div class="panel-title">🎯 AÇÃO OBRIGATÓRIA</div>
-            <p class="panel-text">
-                <span class="highlight">Siga TODOS os canais da lista.</span> Esse é um compromisso mútuo. É um clique rápido que não custa nada para você, mas muda tudo para quem está streamando. União gera autoridade!
-            </p>
+            <p class="panel-text"><span class="highlight">Siga TODOS os canais da lista.</span> Esse é um compromisso mútuo. É um clique rápido que não custa nada para você, mas muda tudo para quem está streamando. União gera autoridade!</p>
         </div>
-
         <div class="panel-section">
             <div class="panel-title">💬 ENGAJAMENTO ATIVO</div>
-            <p class="panel-text">
-                Não seja um fantasma! Ao entrar na live, mande um <span class="highlight">"Salvee!"</span> no chat. Movimento atrai movimento e faz o canal parecer vibrante. <span class="highlight">Juntos somos gigantes!</span>
-            </p>
+            <p class="panel-text">Não seja um fantasma! Ao entrar na live, mande um <span class="highlight">"Salvee!"</span> no chat. Movimento atrai movimento e faz o canal parecer vibrante. <span class="highlight">Juntos somos gigantes!</span></p>
         </div>
-
         <div class="panel-section">
             <div class="panel-title">🛡️ ESTRATÉGIA DE LURK (VOLUME 1%)</div>
-            <p class="panel-text">
-                Para validar seu apoio no algoritmo da Kick: <span class="highlight">NÃO deixe a live no mudo (0%)</span>. 
-                Mantenha a aba aberta e coloque o <span class="highlight">áudio no volume 1</span>. Isso garante que o algoritmo entenda que tem alguém ouvindo e a aba se torna válida como lurk.
-            </p>
+            <p class="panel-text">Para validar seu apoio no algoritmo da Kick: <span class="highlight">NÃO deixe a live no mudo (0%)</span>. Mantenha a aba aberta e coloque o <span class="highlight">áudio no volume 1</span>. Isso garante que o algoritmo entenda que tem alguém ouvindo e a aba se torna válida como lurk.</p>
         </div>
-
         <div class="panel-section">
             <div class="panel-title">💎 ALIANÇA MENSAL DE SUBS</div>
-            <p class="panel-text">
-                Operamos no sistema de <span class="highlight">Sub por Sub</span>. Cada membro se compromete a fortalecer o próximo da lista mensalmente através de Subs. Tenha o controle de que todos estão se auto ajudando para manter a Kickolandia no topo!
-            </p>
+            <p class="panel-text">Operamos no sistema de <span class="highlight">Sub por Sub</span>. Cada membro se compromete a fortalecer o próximo da lista mensalmente através de Subs. Tenha o controle de que todos estão se auto ajudando para manter a Kickolandia no topo!</p>
         </div>
     </div>
 
 </body>
-
 </html>
